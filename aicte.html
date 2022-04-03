@@ -12,6 +12,214 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="HandheldFriendly" content="true">
   <meta name="apple-touch-fullscreen" content="YES">
+
+  <!-- Chatbot styling -->
+
+  <style>
+    .chat-bar-collapsible {
+      position: fixed;
+      bottom: 0;
+      right: 10px;
+      background: transparent;
+    }
+
+    .collapsible {
+      background-color: rgb(82, 151, 255);
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100px;
+      text-align: left;
+      outline: none;
+      font-size: 18px;
+      border-radius: 50%;
+      border: 3px solid white;
+      border-bottom: none;
+      transform: translateX(230px);
+    }
+
+    .con {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: #f1f1f1;
+    }
+
+    .full-chat-block {
+      width: 350px;
+      background: rgb(235, 215, 215);
+      text-align: center;
+      overflow: auto;
+      scrollbar-width: none;
+      height: max-content;
+      transition: max-height 0.2s ease-out;
+    }
+
+    .outer-container {
+      min-height: 500px;
+      bottom: 0%;
+      position: relative;
+    }
+
+    .chat-container {
+      max-height: 500px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      scroll-behavior: smooth;
+      hyphens: auto;
+    }
+
+    .chat-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chat-bar-input-block {
+      display: flex;
+      float: left;
+      box-sizing: border-box;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      background-color: rgb(235, 235, 235);
+      border-radius: 10px 10px 0px 0px;
+      padding: 10px 0px 10px 10px;
+    }
+
+    .chat-bar-icons {
+      display: flex;
+      justify-content: space-evenly;
+      box-sizing: border-box;
+      width: 25%;
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+
+    #chat-icon:hover {
+      opacity: .7;
+    }
+
+    /* Chat bubbles */
+
+    #userInput {
+      width: 75%;
+    }
+
+    .input-box {
+      float: left;
+      border: none;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+      color: #000;
+      background-color: white;
+      outline: none
+    }
+
+    .userText {
+      color: white;
+      font-family: Helvetica;
+      font-size: 16px;
+      font-weight: normal;
+      text-align: right;
+      clear: both;
+    }
+
+    .userText span {
+      line-height: 1.5em;
+      display: inline-block;
+      background: #5ca6fa;
+      padding: 10px;
+      border-radius: 8px;
+      border-bottom-right-radius: 2px;
+      max-width: 80%;
+      margin-right: 10px;
+      animation: floatup .5s forwards
+    }
+
+    .botText {
+      color: #000;
+      font-family: Helvetica;
+      font-weight: normal;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .botText span {
+      line-height: 1.5em;
+      display: inline-block;
+      background: #e0e0e0;
+      padding: 10px;
+      border-radius: 8px;
+      border-bottom-left-radius: 2px;
+      max-width: 80%;
+      margin-left: 10px;
+      animation: floatup .5s forwards
+    }
+
+    @keyframes floatup {
+      from {
+        transform: translateY(14px);
+        opacity: .0;
+      }
+
+      to {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width:600px) {
+      .full-chat-block {
+        width: 100%;
+        border-radius: 0px;
+      }
+
+      .chat-bar-collapsible {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+      }
+
+      .collapsible {
+        width: 100%;
+        border: 0px;
+        border-top: 3px solid white;
+        border-radius: 0px;
+      }
+    }
+
+    @media screen and (max-width:375px) {
+      .chat-bar-collapsible {
+        position: fixed;
+        bottom: 0;
+        right: 10px;
+        background: transparent;
+      }
+
+      .collapsible {
+        font-size: 5px;
+        padding: 5px;
+        width: 20%;
+        border-radius: 50%;
+        border: 3px solid white;
+        border-bottom: none;
+        transform: translateX(300px);
+      }
+
+      .outer-container {
+        min-height: 450px;
+      }
+    }
+  </style>
+
+
   <style type="text/css" media="all">
     @import url("https://www.aicte-india.org/modules/system/system.base.css?r3p9ny");
     @import url("https://www.aicte-india.org/modules/system/system.menus.css?r3p9ny");
@@ -126,28 +334,28 @@
   <script type="text/javascript">
 
 
-        (function ($) {
-          Drupal.behaviors.skinMenuAction = {
-            attach: function (context) {
-              jQuery(".change-layout-button").on("click", function () {
-                var layout_class = $(this).attr("id");
-                var layout_width = 1400;
-                jQuery.cookie("weebpal_layout", layout_class, { path: "/" });
-                jQuery("#page").removeAttr("style");
-                jQuery("#page").removeClass("boxed");
-                if (layout_class != "layout-default") {
-                  jQuery("#page").css("max-width", layout_width);
-                  jQuery("#page").css("margin", "0 auto");
-                  jQuery("#page").addClass("boxed");
-                }
-                $(".change-layout-button").removeClass("active");
-                if (!$(this).hasClass("active"))
-                  $(this).addClass("active");
-                return false;
-              });
+    (function ($) {
+      Drupal.behaviors.skinMenuAction = {
+        attach: function (context) {
+          jQuery(".change-layout-button").on("click", function () {
+            var layout_class = $(this).attr("id");
+            var layout_width = 1400;
+            jQuery.cookie("weebpal_layout", layout_class, { path: "/" });
+            jQuery("#page").removeAttr("style");
+            jQuery("#page").removeClass("boxed");
+            if (layout_class != "layout-default") {
+              jQuery("#page").css("max-width", layout_width);
+              jQuery("#page").css("margin", "0 auto");
+              jQuery("#page").addClass("boxed");
             }
-          }
-        })(jQuery);
+            $(".change-layout-button").removeClass("active");
+            if (!$(this).hasClass("active"))
+              $(this).addClass("active");
+            return false;
+          });
+        }
+      }
+    })(jQuery);
 
   </script>
   <script type="text/javascript" src="https://www.aicte-india.org/misc/progress.js?v=7.56"></script>
@@ -163,7 +371,7 @@
     src="https://www.aicte-india.org/sites/all/themes/educational/js/educational.js?r3p9ny"></script>
   <script type="text/javascript"
     src="https://www.aicte-india.org/sites/all/themes/educational/js/jquery.smooth-scroll.js?r3p9ny"></script>
-  
+
   <script type="text/javascript">
 
     jQuery.extend(Drupal.settings, { "basePath": "\/", "pathPrefix": "", "ajaxPageState": { "theme": "educational", "theme_token": "IebmQwewykM_fl9yV-CbWB-waRsLUKn0Bi_B92BE3Gg", "jquery_version": "1.10", "js": { "sites\/all\/libraries\/owlcarousel\/owl.carousel.min.js": 1, "sites\/all\/modules\/flexslider\/assets\/js\/flexslider.load.js": 1, "sites\/all\/modules\/owlcarousel\/includes\/js\/owlcarousel.settings.js": 1, "sites\/all\/modules\/jquery_update\/replace\/jquery\/1.10\/jquery.min.js": 1, "misc\/jquery.once.js": 1, "misc\/drupal.js": 1, "sites\/all\/modules\/views_slideshow\/js\/views_slideshow.js": 1, "misc\/ajax.js": 1, "sites\/all\/modules\/jquery_update\/js\/jquery_update.js": 1, "sites\/all\/modules\/admin_menu\/admin_devel\/admin_devel.js": 1, "sites\/all\/modules\/google_cse\/google_cse.js": 1, "sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js": 1, "sites\/all\/modules\/colorbox\/js\/colorbox.js": 1, "sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.js": 1, "sites\/all\/modules\/colorbox\/js\/colorbox_load.js": 1, "sites\/all\/modules\/colorbox\/js\/colorbox_inline.js": 1, "sites\/all\/libraries\/flexslider\/jquery.flexslider-min.js": 1, "sites\/all\/modules\/tb_megamenu\/js\/tb-megamenu-frontend.js": 1, "sites\/all\/modules\/tb_megamenu\/js\/tb-megamenu-touch.js": 1, "sites\/all\/libraries\/jquery.cycle\/jquery.cycle.all.min.js": 1, "sites\/all\/modules\/views_slideshow\/contrib\/views_slideshow_cycle\/js\/views_slideshow_cycle.js": 1, "misc\/collapse.js": 1, "misc\/form.js": 1, "0": 1, "misc\/progress.js": 1, "sites\/all\/modules\/colorbox_node\/colorbox_node.js": 1, "sites\/all\/themes\/educational\/bootstrap\/js\/bootstrap.js": 1, "sites\/all\/themes\/educational\/js\/uikit.min.js": 1, "sites\/all\/themes\/educational\/js\/waypoints.js": 1, "sites\/all\/themes\/educational\/js\/educational.js": 1, "sites\/all\/themes\/educational\/js\/jquery.smooth-scroll.js": 1, "sites\/all\/themes\/educational\/js\/time.js": 1 }, "css": { "modules\/system\/system.base.css": 1, "modules\/system\/system.menus.css": 1, "modules\/system\/system.messages.css": 1, "modules\/system\/system.theme.css": 1, "sites\/all\/modules\/views_slideshow\/views_slideshow.css": 1, "sites\/all\/libraries\/owlcarousel\/assets\/owl.carousel.min.css": 1, "sites\/all\/libraries\/owlcarousel\/assets\/owl.theme.default.min.css": 1, "modules\/book\/book.css": 1, "sites\/all\/modules\/colorbox_node\/colorbox_node.css": 1, "modules\/comment\/comment.css": 1, "sites\/all\/modules\/date\/date_api\/date.css": 1, "sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css": 1, "sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css": 1, "modules\/field\/theme\/field.css": 1, "sites\/all\/modules\/google_cse\/google_cse.css": 1, "modules\/node\/node.css": 1, "modules\/poll\/poll.css": 1, "modules\/search\/search.css": 1, "modules\/user\/user.css": 1, "modules\/forum\/forum.css": 1, "sites\/all\/modules\/views\/css\/views.css": 1, "sites\/all\/modules\/ckeditor\/css\/ckeditor.css": 1, "sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.css": 1, "sites\/all\/modules\/ctools\/css\/ctools.css": 1, "sites\/all\/modules\/panels\/css\/panels.css": 1, "sites\/all\/modules\/views_metro\/css\/metro.css": 1, "sites\/all\/modules\/views_metro\/views_metro.css": 1, "sites\/all\/modules\/flexslider\/assets\/css\/flexslider_img.css": 1, "sites\/all\/libraries\/flexslider\/flexslider.css": 1, "sites\/all\/modules\/tb_megamenu\/css\/bootstrap.css": 1, "sites\/all\/modules\/tb_megamenu\/css\/base.css": 1, "sites\/all\/modules\/tb_megamenu\/css\/default.css": 1, "sites\/all\/modules\/tb_megamenu\/css\/compatibility.css": 1, "sites\/all\/modules\/views_slideshow\/contrib\/views_slideshow_cycle\/views_slideshow_cycle.css": 1, "sites\/default\/files\/css\/follow.css": 1, "sites\/all\/libraries\/fontawesome\/css\/font-awesome.css": 1, "sites\/all\/themes\/educational\/bootstrap\/css\/bootstrap.css": 1, "sites\/all\/themes\/educational\/bootstrap\/css\/bootstrap-theme.css": 1, "sites\/all\/themes\/educational\/css\/html.css": 1, "sites\/all\/themes\/educational\/css\/base.css": 1, "sites\/all\/themes\/educational\/css\/page.css": 1, "sites\/all\/themes\/educational\/css\/block.css": 1, "sites\/all\/themes\/educational\/css\/menu.css": 1, "sites\/all\/themes\/educational\/css\/off-canvas.css": 1, "sites\/all\/themes\/educational\/css\/animate.css": 1, "sites\/all\/themes\/educational\/css\/view.css": 1, "sites\/all\/themes\/educational\/css\/ie.css": 1, "sites\/all\/themes\/educational\/css\/screens\/tablet.css": 1, "sites\/all\/themes\/educational\/css\/screens\/common.css": 1, "sites\/all\/themes\/educational\/css\/screens\/vertical_tablet.css": 1, "sites\/all\/themes\/educational\/css\/screens\/mobile.css": 1, "public:\/\/css_injector\/css_injector_1.css": 1 } }, "colorbox": { "opacity": "0.85", "current": "{current} of {total}", "previous": "\u00ab Prev", "next": "Next \u00bb", "close": "Close", "maxWidth": "98%", "maxHeight": "98%", "fixed": true, "mobiledetect": false, "mobiledevicewidth": "480px" }, "googleCSE": { "cx": "015346839000696284814:pic_0_hlyxw", "language": "", "resultsWidth": 600, "domain": "www.google.com", "showWaterMark": 0 }, "jcarousel": { "ajaxPath": "\/jcarousel\/ajax\/views" }, "flexslider": { "optionsets": { "default": { "namespace": "flex-", "selector": ".slides \u003E li", "easing": "swing", "direction": "horizontal", "reverse": false, "smoothHeight": false, "startAt": 0, "animationSpeed": 600, "initDelay": 0, "useCSS": true, "touch": true, "video": false, "keyboard": true, "multipleKeyboard": false, "mousewheel": false, "controlsContainer": ".flex-control-nav-container", "sync": "", "asNavFor": "", "itemWidth": 0, "itemMargin": 0, "minItems": 0, "maxItems": 0, "move": 0, "animation": "fade", "slideshow": true, "slideshowSpeed": 7000, "directionNav": true, "controlNav": true, "prevText": "Previous", "nextText": "Next", "pausePlay": false, "pauseText": "Pause", "playText": "Play", "randomize": false, "thumbCaptions": false, "thumbCaptionsBoth": false, "animationLoop": true, "pauseOnAction": true, "pauseOnHover": false, "manualControls": "" } }, "instances": { "flexslider-1": "default" } }, "viewsSlideshow": { "campus_slideshow-block": { "methods": { "goToSlide": ["viewsSlideshowPager", "viewsSlideshowSlideCounter", "viewsSlideshowCycle"], "nextSlide": ["viewsSlideshowPager", "viewsSlideshowSlideCounter", "viewsSlideshowCycle"], "pause": ["viewsSlideshowControls", "viewsSlideshowCycle"], "play": ["viewsSlideshowControls", "viewsSlideshowCycle"], "previousSlide": ["viewsSlideshowPager", "viewsSlideshowSlideCounter", "viewsSlideshowCycle"], "transitionBegin": ["viewsSlideshowPager", "viewsSlideshowSlideCounter"], "transitionEnd": [] }, "paused": 0 } }, "viewsSlideshowPager": { "campus_slideshow-block": { "bottom": { "type": "viewsSlideshowPagerFields" } } }, "viewsSlideshowPagerFields": { "campus_slideshow-block": { "bottom": { "activatePauseOnHover": 0 } } }, "viewsSlideshowCycle": { "#views_slideshow_cycle_main_campus_slideshow-block": { "num_divs": 5, "id_prefix": "#views_slideshow_cycle_main_", "div_prefix": "#views_slideshow_cycle_div_", "vss_id": "campus_slideshow-block", "effect": "fade", "transition_advanced": 0, "timeout": 5000, "speed": 700, "delay": 0, "sync": 1, "random": 0, "pause": 1, "pause_on_click": 0, "action_advanced": 0, "start_paused": 0, "remember_slide": 0, "remember_slide_days": 1, "pause_in_middle": 0, "pause_when_hidden": 0, "pause_when_hidden_type": "full", "amount_allowed_visible": "", "nowrap": 0, "fixed_height": 1, "items_per_slide": 1, "wait_for_image_load": 1, "wait_for_image_load_timeout": 3000, "cleartype": 0, "cleartypenobg": 0, "advanced_options": "{}" } }, "owlcarousel": { "owl-carousel-block79": { "settings": { "items": 2, "margin": 10, "loop": true, "center": false, "mouseDrag": true, "touchDrag": true, "pullDrag": true, "freeDrag": false, "stagePadding": 0, "merge": false, "mergeFit": true, "autoWidth": false, "startPosition": 0, "urlHashListner": false, "nav": true, "navRewind": true, "navText": ["\u003Ci class=\u0022fa fa-angle-left\u0022\u003E\u003C\/i\u003E", "\u003Ci class=\u0022fa fa-angle-right\u0022\u003E\u003C\/i\u003E"], "slideBy": 2, "dots": false, "dotsEach": false, "dotsData": false, "lazyLoad": false, "lazyContent": false, "autoplay": true, "autoplayTimeout": 5000, "autoplayHoverPause": false, "smartSpeed": 250, "fluidSpeed": 250, "autoplaySpeed": false, "navSpeed": false, "dotsSpeed": false, "dragEndSpeed": false, "callbacks": false, "responsiveRefreshRate": 200, "responsiveClass": false, "video": false, "videoHeight": false, "videoWidth": false, "animateOut": false, "animateIn": false, "fallbackEasing": "swing", "info": false, "nestedItemSelector": false, "itemElement": "div", "stageElement": "div", "navContainer": false, "dotsContainer": false, "responsive": [] }, "views": { "ajax_pagination": null } } }, "urlIsAjaxTrusted": { "\/": true }, "colorbox_node": { "width": "600px", "height": "600px" } });
@@ -171,18 +379,64 @@
   </script>
 </head>
 
-<body class="html front not-logged-in two-sidebars page-node page-node- page-node-1 node-type-page i18n-en animation-none"
-   style="position: relative; padding-top: 50px;">
+<body
+  class="html front not-logged-in two-sidebars page-node page-node- page-node-1 node-type-page i18n-en animation-none"
+  style="position: relative; padding-top: 50px;">
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
   </div>
 
+  <!-- Chatbot start -->
+
+  <div class="chat-bar-collapsible" style="position: fixed; z-index: 40;">
+    <button id="chat-button" type="button" class="collapsible">
+      <center><i id="chat-icon" style="color: #fff; font-size: 25px;" class="fa fa-fw fa-comments-o"></i></center>
+    </button>
+
+    <div class="con">
+      <div class="full-chat-block">
+        <!-- Message Container -->
+        <div class="outer-container">
+          <div class="chat-container">
+            <!-- Messages -->
+            <div id="chatbox">
+              <h5 id="chat-timestamp"></h5>
+              <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+            </div>
+
+            <!-- User input box -->
+            <div class="chat-bar-input-block">
+              <div id="userInput">
+                <input id="textInput" class="input-box" type="text" name="msg" placeholder="Type your message here...">
+                <p></p>
+              </div>
+
+              <div class="chat-bar-icons">
+                <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart" onclick="heartButton()"></i>
+                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send" onclick="sendButton()"></i>
+              </div>
+            </div>
+
+            <div id="chat-bar-bottom">
+              <p></p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Chatbot end -->
 
   <style>
   </style>
   <!-- logzeroTechnologies code -->
   <div class="container-fluid">
-    <nav class="collapse navbar-collapse width" id="main-menu-inner" style="z-index: 30; position: fixed; top: 0px; transform: translateX(75px);">
+    <nav class="collapse navbar-collapse width" id="main-menu-inner"
+      style="z-index: 30; position: fixed; top: 0px; display: flex; flex-direction: column; align-items: center; width: 100vw; justify-content: center;">
       <div class="container">
         <div class="region region-main-menu">
           <div id="block-tb-megamenu-main-menu" class="block block-tb-megamenu">
@@ -200,7 +454,7 @@
                   <li data-id="547" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/about-us/history" class="dropdown-toggle" >
+                    <a href="/about-us/history" class="dropdown-toggle">
 
                       About Us <span class="caret"></span>
                     </a>
@@ -1265,7 +1519,7 @@
       </div>
     </nav>
   </div>
-  
+
   <header id="masthead" class="container padTopBtm10 no-white no-pad" role="banner">
     <div class="row">
       <div id="logo" class="col-md-8 col-sm-8 col-xs-12">
@@ -2727,18 +2981,16 @@
                         </div>
                       </div>
                     </div>
-                    <div class="owl-nav"><button role="presentation" class="owl-prev"><i
-                          class="fa fa-angle-left"></i></button><button role="presentation" class="owl-next"><i
-                          class="fa fa-angle-right"></i></button></div>
+                    <div class="owl-nav">
+                      <button role="presentation" class="owl-prev">
+                        <i class="fa fa-angle-left"></i></button>
+                      <button role="presentation" class="owl-next">
+                        <i class="fa fa-angle-right"></i>
+                      </button>
+                    </div>
                     <div class="owl-dots disabled"></div>
                   </div>
                 </div>
-
-
-
-
-
-
               </div>
             </div>
           </div>
@@ -2793,11 +3045,11 @@
           <!-- Global site tag (gtag.js) - Google Analytics -->
           <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-168661400-1"></script>
           <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-  gtag('config', 'UA-168661400-1');
+            gtag('config', 'UA-168661400-1');
           </script>
 
         </div>
@@ -2865,7 +3117,7 @@
     </div>
   </footer>
 
-  <a title="Back to Top" class="btn-btt" href="#Top">Back to Top</a>
+  <a title="Back to Top" class="btn-btt" href="#Top" style="position: fixed; bottom: 80px; z-index: 10;">Back to Top</a>
 
 
   <div id="google_map_model" class="modal fade" role="dialog">
@@ -2889,59 +3141,59 @@
 
 
   <script>
-          jQuery(document).ready(function ($) {
-            $('.uk-offcanvas-bar .menu li.expanded').prepend('<span class="toggle"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span>');
+    jQuery(document).ready(function ($) {
+      $('.uk-offcanvas-bar .menu li.expanded').prepend('<span class="toggle"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span>');
 
-            $('.uk-offcanvas-bar .menu li.expanded .toggle').click(function (e) {
-              $(this).siblings('ul.menu').slideToggle();
-              $(this).toggleClass('activated');
-            });
-            $('.uk-offcanvas-bar .menu li.active .toggle').addClass('activated');
+      $('.uk-offcanvas-bar .menu li.expanded .toggle').click(function (e) {
+        $(this).siblings('ul.menu').slideToggle();
+        $(this).toggleClass('activated');
+      });
+      $('.uk-offcanvas-bar .menu li.active .toggle').addClass('activated');
 
-            if ($("body").hasClass("page-office") == true) {
-              $("#cboxClose").on('click', function () {
-                location.reload();
+      if ($("body").hasClass("page-office") == true) {
+        $("#cboxClose").on('click', function () {
+          location.reload();
 
-              })
-            }
-            //----removing value of a select drupal------------------
-            $("#edit-submitted-type-of-query option:first-child").val("");
-            $("#edit-field-select-region-category-tid option:first-child").remove();
+        })
+      }
+      //----removing value of a select drupal------------------
+      $("#edit-submitted-type-of-query option:first-child").val("");
+      $("#edit-field-select-region-category-tid option:first-child").remove();
 
-            $(".click_to_genrate_popup_triger").on('click', function () {
+      $(".click_to_genrate_popup_triger").on('click', function () {
 
-              $(this).parent().parent().parent().children('.views-field-field-image').find('.first a').trigger('click');
-            })
-            $("body").on('click', '.class_map_display_model', function () {
-              $(".model_google_body_replace").html('');
-              var data = $(this).parent().parent().siblings('.views-field-field-address-my').clone(true, true);
-              $(".model_google_body_replace").html(data);
-              console.log(data);
-            });
+        $(this).parent().parent().parent().children('.views-field-field-image').find('.first a').trigger('click');
+      })
+      $("body").on('click', '.class_map_display_model', function () {
+        $(".model_google_body_replace").html('');
+        var data = $(this).parent().parent().siblings('.views-field-field-address-my').clone(true, true);
+        $(".model_google_body_replace").html(data);
+        console.log(data);
+      });
 
-            $('.view-id-leadership_team .view-content >*').each(function () {
-              $(this).find('.views-row>div').each(function (index, element) {
-                var save_mailto = $(this).find('.views-field-field-email-id .field-content').html();
-                $(this).find('.views-field-field-email-id .field-content').html('<a href="mailto:' + save_mailto + '"><i class="fa fa-envelope-o"></i></a>');
+      $('.view-id-leadership_team .view-content >*').each(function () {
+        $(this).find('.views-row>div').each(function (index, element) {
+          var save_mailto = $(this).find('.views-field-field-email-id .field-content').html();
+          $(this).find('.views-field-field-email-id .field-content').html('<a href="mailto:' + save_mailto + '"><i class="fa fa-envelope-o"></i></a>');
 
 
-              });
-            });
+        });
+      });
 
-            $('.tree').parents('.row').addClass('no_pad');
-            $('.font_changer li a').click(function (e) {
-              var saveattr = $(this).attr('id');
-              $('html').removeAttr('id');
-              $('html').attr('id', saveattr);
-            });
+      $('.tree').parents('.row').addClass('no_pad');
+      $('.font_changer li a').click(function (e) {
+        var saveattr = $(this).attr('id');
+        $('html').removeAttr('id');
+        $('html').attr('id', saveattr);
+      });
 
-            var saveMessage = $('.page-contact #messages').html();
-            if (saveMessage) {
-              $('.page-contact #block-views-contact-form-block-block').prepend('<div class="lzt_js">' + saveMessage + '</div>');
-            }
+      var saveMessage = $('.page-contact #messages').html();
+      if (saveMessage) {
+        $('.page-contact #block-views-contact-form-block-block').prepend('<div class="lzt_js">' + saveMessage + '</div>');
+      }
 
-            $('.page-node-169 #main-menu-inner .tb-megamenu>ul > li').removeClass('active');
-          });
+      $('.page-node-169 #main-menu-inner .tb-megamenu>ul > li').removeClass('active');
+    });
   </script>
   <script type="text/javascript"
     src="https://www.aicte-india.org/sites/all/libraries/owlcarousel/owl.carousel.min.js?r3p9ny"></script>
@@ -2977,6 +3229,125 @@
     </div>
     <div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div>
   </div>
+
+  <!-- Chatbot js -->
+
+
+  <script>
+    // Collapsible
+    var coll = document.getElementsByClassName("collapsible");
+
+    for (let i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+
+        var con = this.nextElementSibling;
+
+        if (con.style.maxHeight) {
+          con.style.maxHeight = null;
+        } else {
+          con.style.maxHeight = con.scrollHeight + "px";
+        }
+
+      });
+    }
+
+    function getTime() {
+      let today = new Date();
+      hours = today.getHours();
+      minutes = today.getMinutes();
+
+      if (hours < 10) {
+        hours = "0" + hours;
+      }
+
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+
+      let time = hours + ":" + minutes;
+      return time;
+    }
+
+    // Gets the first message
+    function firstBotMessage() {
+      let firstMessage = "How's it going?"
+      document.getElementById("botStarterMessage").innerHTML = '<p class="botText"><span>' + firstMessage + '</span></p>';
+
+      let time = getTime();
+
+      $("#chat-timestamp").append(time);
+      document.getElementById("userInput").scrollIntoView(false);
+    }
+
+    firstBotMessage();
+
+    // Retrieves the response
+    function getHardResponse(userText) {
+      let botResponse = getBotResponse(userText);
+      let botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
+      $("#chatbox").append(botHtml);
+
+      document.getElementById("chat-bar-bottom").scrollIntoView(true);
+    }
+
+    //Gets the text text from the input box and processes it
+    function getResponse() {
+      let userText = $("#textInput").val();
+
+      if (userText == "") {
+        userText = "";
+      }
+
+      let userHtml = '<p class="userText"><span>' + userText + '</span></p>';
+
+      $("#textInput").val("");
+      $("#chatbox").append(userHtml);
+      document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+      setTimeout(() => {
+        getHardResponse(userText);
+      }, 1000)
+
+    }
+
+    // Handles sending text via button clicks
+    function buttonSendText(sampleText) {
+      let userHtml = '<p class="userText"><span>' + sampleText + '</span></p>';
+
+      $("#textInput").val("");
+      $("#chatbox").append(userHtml);
+      document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+    }
+
+    function sendButton() {
+      getResponse();
+    }
+
+    function heartButton() {
+      buttonSendText("Heart clicked!")
+    }
+
+    // Press enter to send a message
+    $("#textInput").keypress(function (e) {
+      if (e.which == 13) {
+        getResponse();
+      }
+    });
+
+    function getBotResponse(input) {
+      // Simple responses
+      if (input == "hello") {
+        return "Hello there!";
+      } else if (input == "goodbye") {
+        return "Talk to you later!";
+      } else {
+        return "Try asking something else!";
+      }
+    }
+  </script>
+
 </body>
 
 </html>
