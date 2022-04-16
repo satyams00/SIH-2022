@@ -8,6 +8,7 @@
   <link rel="canonical" href="https://www.aicte-india.org/">
   <link rel="shortlink" href="https://www.aicte-india.org/">
   <title>Government of India, All India Council for Technical Education |</title>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="HandheldFriendly" content="true">
@@ -159,7 +160,7 @@
       border-bottom-left-radius: 2px;
       max-width: 80%;
       margin-left: 10px;
-      animation: floatup .5s forwards
+      animation: floatup .5s forwards;
     }
 
     @keyframes floatup {
@@ -219,7 +220,176 @@
     }
   </style>
 
+    <style>
+        .tb-megamenu-submenu, .tb-megamenu-row {
+            background: transparent !important;
+        }
+        .tb-megamenu-submenu{
+            padding: 0 !important;
+        }
+        .tb-megamenu-submenu:hover{
+            display: block;
+        }
+        .dropdown-menu{
+            left: auto !important;
+            box-shadow: none !important;
+            right: auto !important;
+        }
 
+        .mega-dropdown-inner{
+            margin: 0 !important;
+        }
+        #main-menu-inner ul li a{
+            padding: 0px !important;
+        }
+        #search-block-form .form-text{
+          border-radius: 20px !important;
+        }
+        .logo_m{
+          display: none;
+        }
+        .mobile{
+          display: none;
+        }
+
+        @media screen and (max-width:375px){
+          #logo{
+            display: flex;
+            justify-content: center;
+            display: none !important;
+          }
+          .mobile{
+            display: flex;
+            margin-top: -42px;
+            margin-bottom: 13px;
+            margin-right: 13px;
+          }
+          #mobile_toggle .navbar-canvas-toggle{
+            border-radius: 6px;
+          }
+          .Search{
+            display: none !important;
+          }
+          .logo_m{
+            display: inline !important;
+            margin: 0px 30px;
+          }
+          .new{
+            display: none !important;
+          }
+          #mobile_toggle{
+            width: 19vw !important;
+          }
+          #mobile_toggle .navbar-canvas-toggle{
+            margin-bottom: 0px !important;
+          }
+          .region-search{
+            width: 50%;
+            display: flex;
+            justify-content: end;
+          }
+          #masthead{
+            padding: 0 !important;
+          }
+          #block-block-6 ul li a{
+            width: 22px !important;
+            height: 33px !important;
+            font-size: 1.5rem !important;
+          }
+          .legends_crousal{
+            display: none;
+          }
+        }
+    </style>
+
+    <style>
+      body{
+        background: linear-gradient(90deg, orange, white, green);
+      }
+      .tb-megamenu ul  li  {
+        background: linear-gradient(180deg, orange, white, green) !important;
+      }
+      
+
+      /* #main-menu-inner .tb-megamenu ul  li:hover{
+        background: transparent !important;
+      } */
+      #logo{
+        display: flex;
+        justify-content: end;
+      }
+      .tb-megamenu-subnav li{
+        background: white !important;
+      }
+      
+      
+      #log button:hover{
+        color: green !important;
+      }
+      .tb-megamenu-item:hover{
+        background-color: red !important;
+      }
+
+      .tb-megamenu-item:hover{
+        background: red !important;
+      }
+      
+      /* .tb-megamenu .nav li a:focus, .tb-megamenu .nav li a:hover{
+        background: linear-gradient(180deg, orange, white, green) !important;
+
+      } */
+      #main-menu-inner .tb-megamenu>ul > li.open+li > a, #main-menu-inner .tb-megamenu>ul > li:hover+li > a, #main-menu-inner .tb-megamenu>ul > li.active+li > a{
+        background: transparent !important;
+      }
+
+      #main-menu-inner .tb-megamenu .dropdown-menu ul li a{
+        background: white !important;
+      }
+      
+      /* #main-menu-inner .tb-megamenu> ul > li:hover{
+        background-color: red !important;
+      } */
+      .tb-megamenu-item:hover{
+        background: linear-gradient(180deg, orange, white, green) !important;
+      }
+    </style>
+
+<style>
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  .slides img{
+    width: 100vw;
+  }
+  .slides{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+      animation: slider_slides 10s forwards infinite;
+  }
+  @keyframes slider_slides {
+    0%{
+      transform: translateX(0vw);
+    }
+    25%{
+      transform: translateX(-100vw);
+    }
+    50%{
+      transform: translateX(-200vw);
+    }
+    75%{
+      transform: translateX(-300vw);
+    }
+    100%{
+      transform: translateX(-400vw);
+    }
+  }
+</style>
+  
 
   <style type="text/css" media="all">
     @import url("https://www.aicte-india.org/modules/system/system.base.css?r3p9ny");
@@ -436,8 +606,9 @@
   </style>
   <!-- logzeroTechnologies code -->
   <div class="container-fluid">
-    <nav class="collapse navbar-collapse width" id="main-menu-inner"
-      style="margin: 0; padding: 0; z-index: 30; position: fixed; top: 0px; display: flex; flex-direction: column; align-items: center; width: 100vw; justify-content: center;">
+    <nav>
+    <div class="collapse navbar-collapse width" id="main-menu-inner"
+      style="margin: 0; padding: 0; z-index: 30; position: fixed; top: 0px; right: 0px; display: flex; flex-direction: column; width: 100vw;">
       <div class="container">
         <div class="region region-main-menu">
           <div id="block-tb-megamenu-main-menu" class="block block-tb-megamenu">
@@ -455,7 +626,7 @@
                   <li data-id="547" data-level="2" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a style="width: 100px;" href="/about-us/history" class="dropdown-toggle">
+                    <a style="width: 100px; color: #000 !important;" href="/about-us/history" class="dropdown-toggle">
 
                       About Us <span class="caret"></span>
                     </a>
@@ -471,7 +642,7 @@
                                   data-caption="Read about the apex body of Technical Education in India "
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                                   class="tb-megamenu-item level-2 mega">
-                                  <a href="/about-us/overview" class="">
+                                  <a href="/about-us/overview">
 
                                     Overview
                                   </a>
@@ -486,14 +657,6 @@
                                     History
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-2"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1356" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Learn about the team that makes it count" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -513,14 +676,6 @@
                                     Organisation Structure
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-3"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1178" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Key messages from dignitaries " data-alignsub="" data-group="0"
                                   data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
@@ -549,7 +704,7 @@
                   <li data-id="549" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/news/news-overview" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important;" href="/news/news-overview" class="dropdown-toggle">
 
                       Newsroom <span class="caret"></span>
                     </a>
@@ -578,14 +733,6 @@
                                     News
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-5"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1284" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Read our communication to the press" data-alignsub="" data-group="0"
                                   data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
@@ -603,14 +750,6 @@
                                     Image Gallery
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-6"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1286" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Enjoy the videos from the world of AICTE" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -640,7 +779,7 @@
                   <li data-id="1158" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/bureaus" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important;" href="/bureaus" class="dropdown-toggle">
 
                       Bureaus <span class="caret"></span>
                     </a>
@@ -670,14 +809,6 @@
                                     Approval
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-8"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1288" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Policy Planning and Coordination with other Organisations "
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -697,14 +828,6 @@
                                     Administration
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-9"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1289" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Drawing &amp; Disbursement of Plan and Non-plan accounts"
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -734,7 +857,7 @@
                   <li data-id="1652" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="right" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega mega-align-right dropdown">
-                    <a href="/Initiatives" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important;" href="/Initiatives" class="dropdown-toggle">
 
                       Initiatives <span class="caret"></span>
                     </a>
@@ -783,14 +906,6 @@
                                     AICTE-CII India Innovation Initiative
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-11"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-4">
                                 <li data-id="1803" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Awards for implementing Swachh Bharat Mission in institutions"
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -828,14 +943,6 @@
                                     Jal Shakti Abhiyan
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-12"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-4">
                                 <li data-id="1945" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Plantation Drive for Green and Healthy Environment" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -886,7 +993,7 @@
                   <li data-id="1162" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/schemes" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important;" href="/schemes" class="dropdown-toggle">
 
                       Schemes <span class="caret"></span>
                     </a>
@@ -916,14 +1023,6 @@
                                     Student Development Schemes
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-14"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1780" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Information about various Faculty related schemes" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -943,14 +1042,6 @@
                                     Institutional Development Schemes
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-15"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1782" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Schemes to promote research in technical education" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -981,7 +1072,7 @@
                   <li data-id="1160" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/education/overview" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important;" href="/education/overview" class="dropdown-toggle">
 
                       Education <span class="caret"></span>
                     </a>
@@ -1030,14 +1121,6 @@
                                     Vocational Education
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-17"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-4">
                                 <li data-id="1297" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Providing technical and support services to the less fortunate"
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -1077,14 +1160,6 @@
                                     Best Practices in Institutes
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-18"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-4">
                                 <li data-id="1300" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Leveraging the power of Information &amp; Comm. Technology"
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -1135,7 +1210,7 @@
                   <li data-id="551" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/opportunities/students/overview" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important;" href="/opportunities/students/overview" class="dropdown-toggle">
 
                       Opportunities <span class="caret"></span>
                     </a>
@@ -1156,14 +1231,6 @@
                                     For Faculty
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-20"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-1">
                                 <li data-id="1303" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Find information on Admission, Scholarship, Schemes etc.."
                                   data-alignsub="" data-group="1" data-hidewcol="0" data-hidesub="0"
@@ -1173,20 +1240,11 @@
                                     For Student
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-21"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-1">
                                 <li data-id="1735" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Read more about the institutional development schemes" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
                                   class="tb-megamenu-item level-2 mega">
                                   <a href="/schemes/institutional-development-schemes" class="">
-
                                     For Institution
                                   </a>
                                 </li>
@@ -1201,7 +1259,7 @@
                   <li data-id="1163" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="https://facilities.aicte-india.org/dashboard/pages/dashboardaicte.php"
+                    <a style="color: #000 !important; background: transparent !important;" href="https://facilities.aicte-india.org/dashboard/pages/dashboardaicte.php"
                       class="dropdown-toggle" target="_blank">
 
                       Statistics <span class="caret"></span>
@@ -1257,14 +1315,6 @@
                                     Faculty
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-23"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-4">
                                 <li data-id="1362" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Graphical representation of the intakes and enrollment" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -1307,14 +1357,6 @@
                                     Institutes with Accrediated Courses
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-24"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-4">
                                 <li data-id="1365" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Institutions conducting technical programmes without approval"
                                   data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -1369,7 +1411,7 @@
                   <li data-id="1164" data-level="1" data-type="menu_item" data-class="" data-xicon="" data-caption=""
                     data-alignsub="" data-group="0" data-hidewcol="0" data-hidesub="0"
                     class="tb-megamenu-item level-1 mega dropdown">
-                    <a href="/bulletins" class="dropdown-toggle">
+                    <a style="color: #000 !important; background: transparent !important; border-right: 1px solid #f9b890;" href="/bulletins" class="dropdown-toggle">
 
                       Bulletins <span class="caret"></span>
                     </a>
@@ -1399,14 +1441,6 @@
                                     Advertisement
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-26"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1307" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Read our important circulars" data-alignsub="" data-group="0"
                                   data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-2 mega">
@@ -1425,14 +1459,6 @@
                                     Tenders
                                   </a>
                                 </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div data-class="" data-width="4" data-hidewcol="" id="tb-megamenu-column-27"
-                            class="tb-megamenu-column span4  mega-col-nav">
-                            <div class="tb-megamenu-column-inner mega-inner clearfix">
-                              <ul class="tb-megamenu-subnav mega-nav level-1 items-2">
                                 <li data-id="1309" data-level="2" data-type="menu_item" data-class="" data-xicon=""
                                   data-caption="Get updates on our Policies &amp; Activities" data-alignsub=""
                                   data-group="0" data-hidewcol="0" data-hidesub="0"
@@ -1458,16 +1484,27 @@
                       </div>
                     </div>
                   </li>
-                  <li class="expanded menu-mlid-551"><a style="height: 45px;"
+                  <li id="log" >
+                    <button type="button" style="border: none; background: transparent;"><a style="height: 45px;"
+                      href="https://portal.aicte-india.org/partnerportal_enu">LOGIN</a>
+                      </button>
+                    <!-- <a style="height: 45px;"
+                      <i class="fa fa-user-o" aria-hidden="true"></i></i>
+                      href="https://portal.aicte-india.org/partnerportal_enu"><i
+                        class="ico-user"></i>Login</a> -->
+                    </li>
+                  <!-- <li class="expanded menu-mlid-551"><a style="height: 45px;"
                       href="https://portal.aicte-india.org/partnerportal_enu" class="login_btn" target="_blank"><i
-                        class="ico-user"></i>Login</a></li>
+                        class="ico-user"></i>Login</a>
+                    </li> -->
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
   </div>
 
   <header id="masthead" class="container padTopBtm10 no-white no-pad" role="banner">
@@ -1480,6 +1517,74 @@
             <img src="https://www.aicte-india.org/sites/default/files/logo_new.png" alt="Back To Home">
           </a>
         </h1>
+      </div>
+      <div class="mobile">
+        <div class="logo_m">
+          <img src="logo_new-removebg-preview-removebg-preview.png" alt="LOGO">
+        </div>
+        <div class="region region-search">
+          <div id="block-custom-search-blocks-1" class="block block-custom-search-blocks form-group has-feedback"
+            role="search">
+  
+  
+            <div class="content">
+              <div class="region region-header">
+                <div id="block-search-form" class="block block-search animation">
+  
+  
+                  <div class="content">
+                    <form class="google-cse"
+                      onsubmit="if(this.search_block_form.value=='Search' || this.search_block_form.value == 'Enter any terms...'){this.search_block_form.value = ''; }"
+                      action="/" method="post" id="search-block-form" accept-charset="UTF-8">
+                      <div>
+                        <div class="container-inline">
+                          <h2 class="element-invisible">Search form</h2>
+                          <div class="form-item form-type-textfield form-item-search-block-form">
+                            <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+                            <input title="Enter the terms you wish to search for." autocomplete="off"
+                              onblur="if (this.value == '') {this.value = 'Search';}"
+                              onfocus="if (this.value == 'Search') {this.value = '';}" placeholder="Enter any terms..."
+                              type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="40"
+                              maxlength="128" class="form-text">
+                          </div>
+                          <div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit"
+                              name="op" value="GO!" class="form-submit"></div><input type="hidden" name="form_build_id"
+                            value="form-mG5YwgV9dWBJDhTsFLVkmCH1I4WnytkqqIi4K5FJcg0">
+                          <input type="hidden" name="form_id" value="search_block_form">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div id="block-block-34" class="block block-block">
+  
+  
+                  <div class="content">
+                    <!-- <div class="content">
+    <form action="/aicte/coming-soon" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+  <input title="Enter the terms you wish to search for." placeholder="Search any term..." type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text">
+  </div>
+  <div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Search" class="form-submit"></div><input type="hidden" name="form_build_id" >
+  <input type="hidden" name="form_id" value="search_block_form">
+  </div>
+  </div></form>
+  </div>
+  -->
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div> <!-- /.block -->
+        </div>
+        <div id="mobile_toggle">
+          <a href="javascript:;" class="off-canvas-toggle navbar-canvas-toggle icon-toggle hidden-lg clearfix"
+            data-uk-offcanvas="{target:'#mobile-menu'}"> <i class="fa fa-bars"></i>
+          </a>
+        </div>
       </div>
       <div class="col-md-4 col-sm-4 col-xs-12 Search">
         <div class="region region-search">
@@ -1557,7 +1662,7 @@
         <div id="block-menu-block-9--2" class="block block-menu-block">
 
 
-          <div class="content">
+          <div class="content" id="content_hover">
             <div class="menu-block-wrapper menu-block-9 menu-name-main-menu parent-mlid-0 menu-level-1">
               <ul class="menu">
                 <li class="first leaf active-trail active menu-mlid-221"><a href="/"
@@ -1735,11 +1840,13 @@
       </div>
     </div>
   </div>
-  <div id="mobile_toggle" class="">
-    <a href="javascript:;" class="off-canvas-toggle navbar-canvas-toggle icon-toggle hidden-lg clearfix"
-      data-uk-offcanvas="{target:'#mobile-menu'}">
-      <span>Menu</span> <i class="fa fa-bars"></i>
-    </a>
+  <div class="new">
+    <div id="mobile_toggle" class="">
+      <a href="javascript:;" class="off-canvas-toggle navbar-canvas-toggle icon-toggle hidden-lg clearfix"
+        data-uk-offcanvas="{target:'#mobile-menu'}">
+        <span>Menu</span> <i class="fa fa-bars"></i>
+      </a>
+    </div>
   </div>
 
 
@@ -1763,9 +1870,6 @@
                 <div class="view-content">
                   <div id="flexslider-1" class="flexslider flexslider-processed">
                     <ul class="slides">
-                      <div class="views-field views-field-body">
-                        <div class="field-content"></div>
-                      </div>
                       <li class="flex-active-slide"
                         style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;">
 
@@ -1776,7 +1880,7 @@
                         </div>
                       </li>
                       <li
-                        style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;"
+                        style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 1;"
                         class="">
                         <div class="views-field views-field-body">
                           <div class="field-content">
@@ -1863,13 +1967,7 @@
                         </div>
                       </li>
                     </ul>
-                    <ol class="flex-control-nav flex-control-paging">
-                      <li><a class="flex-active">1</a></li>
-                      <li><a class="">2</a></li>
-                      <li><a class="">3</a></li>
-                      <li><a class="">4</a></li>
-                      <li><a class="">5</a></li>
-                    </ol>
+                    
                     <ul class="flex-direction-nav">
                       <li><a class="flex-prev" href="#">Previous</a></li>
                       <li><a class="flex-next" href="#">Next</a></li>
@@ -3276,7 +3374,7 @@
     }
 
     function heartButton() {
-      buttonSendText("Heart clicked!")
+      buttonSendText("These are the FAQs about AICTE.")
     }
 
     // Press enter to send a message
@@ -3297,7 +3395,7 @@
       }
     }
   </script>
-
+  
 </body>
 
 </html>
