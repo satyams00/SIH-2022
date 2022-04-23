@@ -390,7 +390,7 @@
     }
 
     .slides {
-      width: 500%;
+      width: 600%;
       height: 100vh;
       display: flex;
       flex-direction: row;
@@ -398,7 +398,7 @@
     }
 
     .slides li {
-      animation: slider_slides 30s forwards infinite;
+      animation: slider_slides 40s forwards infinite;
     }
 
     @keyframes slider_slides {
@@ -406,28 +406,34 @@
         transform: translateX(0vw);
       }
       10%{
-        transform: translateX(-99vw);
+        transform: translateX(-100%);
       }
       25% {
-        transform: translateX(-99vw);
+        transform: translateX(-100%);
       }
       35%{
-        transform: translateX(-198vw);
+        transform: translateX(-200%);
       }
       50% {
-        transform: translateX(-198vw);
+        transform: translateX(-200%);
       }
-      60%{
-        transform: translateX(-297vw);
+      55%{
+        transform: translateX(-300%);
       }
-      75% {
-        transform: translateX(-297vw);
+      65% {
+        transform: translateX(-300%);
+      }
+      70%{
+        transform: translateX(-400%);
+      }
+      80%{
+        transform: translateX(-400%);
       }
       85%{
-        transform: translateX(-395vw);
+        transform: translateX(-500%);
       }
       100% {
-        transform: translateX(-395vw);
+        transform: translateX(-500%);
       }
     }
   </style>
@@ -578,8 +584,8 @@
     src="https://www.aicte-india.org/sites/all/modules/colorbox_node/colorbox_node.js?r3p9ny"></script>
   <script type="text/javascript"
     src="https://www.aicte-india.org/sites/all/themes/educational/bootstrap/js/bootstrap.js?r3p9ny"></script>
-  <script type="text/javascript"
-    src="https://www.aicte-india.org/sites/all/themes/educational/js/uikit.min.js?r3p9ny"></script>
+  <!-- <script type="text/javascript"
+    src="https://www.aicte-india.org/sites/all/themes/educational/js/uikit.min.js?r3p9ny"></script> -->
   <script type="text/javascript"
     src="https://www.aicte-india.org/sites/all/themes/educational/js/waypoints.js?r3p9ny"></script>
   <script type="text/javascript"
@@ -1950,9 +1956,21 @@
                           src="https://www.aicte-india.org/sites/default/files/images/slideshow/ban1_1.jpg" width="1920"
                           height="1416" alt="" draggable="false">
                       </li>
+                      <li>
+                        <img
+                          src="https://www.aicte-india.org/sites/default/files/images/slideshow/for%20Website_Vidyanjali_0.jpg"
+                          width="1924" height="1412" alt="" draggable="false">
+
+                      </li>
                     </ul>
 
-
+                    <ol class="flex-control-nav flex-control-paging dots">
+                      <li><a id="1" class="flex-active">1</a></li>
+                      <li><a id="2">2</a></li>
+                      <li><a id="3">3</a></li>
+                      <li><a id="4">4</a></li>
+                      <li><a id="5">5</a></li>
+                    </ol>
 
                     <ul class="flex-direction-nav">
                       <li><a class="flex-prev" href="#">Previous</a></li>
@@ -3381,6 +3399,8 @@
       }
     }
   </script>
+
+  
 
 </body>
 
